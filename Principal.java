@@ -64,6 +64,12 @@ public class Principal
         ///////////////////////Lectura del diccionario.txt//////////////////////////
         controlador.archivoArray();
         controlador.insertar();
+        /* QUITAR COMENTARIOS SI SE DESEA VISUALIZAR QUE FUNCIONA EL ORDENAMIENTO DENTRO DEL BST
+        System.out.println("\nIngles:");
+        controlador.recorrer(controlador.getIngles().getRaiz());
+        System.out.println("\nFrances:");
+        controlador.recorrer(controlador.getFrances().getRaiz());
+        */
         ////////////////////////////////////////////////////////
         
         while(buclePrincipal)
