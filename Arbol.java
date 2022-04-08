@@ -2,18 +2,27 @@
  * Clase Arbol. Implementara la logica de un BST utilizando nodos de tipo String
  * Autor: Elias Alberto Alvarado Raxon - 21808
  * Fecha de creacion: 06/04/2022
- * @version 1
+ * @version 5
  */
 
 public class Arbol
 {
     private Nodo<String> raiz;
 
+    /** 
+     * @param busqueda
+     * @return boolean
+     */
     public boolean existe(String busqueda)
     {
         return existe(this.raiz, busqueda);
     }
 
+    /** 
+     * @param nodo
+     * @param busqueda
+     * @return boolean
+     */
     private boolean existe(Nodo<String> nodo, String busqueda)
     {
         if (nodo == null) return false;
@@ -21,12 +30,21 @@ public class Arbol
         else if (busqueda.compareTo(nodo.getPalabra()) < 0) return existe(nodo.getIzquierda(), busqueda);
         else return existe(nodo.getDerecha(), busqueda);
     }
-
+    
+    /** 
+     * @param palabra
+     * @return String
+     */
     public String traduccion(String palabra)
     {
         return traduccion(this.raiz, palabra);
     }
-
+    
+    /** 
+     * @param nodo
+     * @param palabra
+     * @return String
+     */
     private String traduccion(Nodo<String> nodo, String palabra)
     {
         if (nodo == null) return "*"  + palabra + "*";
@@ -34,12 +52,23 @@ public class Arbol
         else if (palabra.compareTo(nodo.getPalabra()) < 0) return traduccion(nodo.getIzquierda(), palabra);
         else return traduccion(nodo.getDerecha(), palabra);
     }
-
+    
+    /** 
+     * @param palabra
+     * @param traduccion
+     * @return String
+     */
     public String editar(String palabra, String traduccion)
     {
         return editar(this.raiz, palabra, traduccion);
     }
-
+    
+    /** 
+     * @param nodo
+     * @param palabra
+     * @param traduccion
+     * @return String
+     */
     private String editar(Nodo<String> nodo, String palabra, String traduccion)
     {
         if (nodo == null) return "\nHa ocurrio un error inesperado, verifique haber ingresado correctamente la palabra clave.";
@@ -51,7 +80,11 @@ public class Arbol
         else if (palabra.compareTo(nodo.getPalabra()) < 0) return editar(nodo.getIzquierda(), palabra, traduccion);
         else return editar(nodo.getDerecha(), palabra, traduccion);
     }
-
+    
+    /** 
+     * @param palabra
+     * @param traduccion
+     */
     public void insertar(String palabra, String traduccion)
     {
         Nodo<String> n = new Nodo<String>(palabra, traduccion);
@@ -88,7 +121,10 @@ public class Arbol
             }
         }
     }
-
+    
+    /** 
+     * @return Nodo<String>
+     */
     public Nodo<String> getRaiz()
     {
         return this.raiz;

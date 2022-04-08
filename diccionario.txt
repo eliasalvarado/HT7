@@ -11,3 +11,8 @@ to,a,pour
 do,hacer,fais
 my,mi,ma
 about,sobre,sur
+play,jugar,jouer
+i,yo,je
+really,realmente,vraiment
+like,gustar,aimer
+game,juego,jeu

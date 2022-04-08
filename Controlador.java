@@ -2,12 +2,11 @@
  * Clase Controldaor. Sera la encargada de ejecutar las acciones requeridas por el usuario
  * Autor: Elias Alberto Alvarado Raxon - 21808
  * Fecha de creacion: 06/04/2022
- * @version 1
+ * @version 10
  */
 
 
 import java.util.ArrayList;
-
 
 public class Controlador
 {
@@ -16,27 +15,39 @@ public class Controlador
     private Archivo archivo = new Archivo();
     private ArrayList<String> listaCompleta = new ArrayList<String>();
     
+    /** 
+     * @return Arbol
+     */
     public Arbol getIngles()
     {
         return this.ingles;
     }
-
+    
+    /** 
+     * @return Arbol
+     */
     public Arbol getFrances()
     {
         return this.frances;
     }
-
+    
+    /** 
+     * @param palabra
+     * @param traduccion
+     * @param ingles
+     * @return String
+     */
     public String insertar(String palabra, String traduccion, boolean ingles)
     {
         String info = "";
         if(ingles)
         {
-            this.ingles.insertar(palabra, traduccion);
+            this.ingles.insertar(palabra.toLowerCase(), traduccion.toLowerCase());
             info += "\nSe ha agregado la palabra '" + palabra + "' con traduccion: " + traduccion + " al diccionario de Ingles-Espaniol";
         }
         else
         {
-            this.frances.insertar(palabra, traduccion); 
+            this.frances.insertar(palabra.toLowerCase(), traduccion.toLowerCase());
             info += "\nSe ha agregado la palabra '" + palabra + "' con traduccion: " + traduccion + " al diccionario de Frances-Espaniol";
         }
         return info;
@@ -52,14 +63,17 @@ public class Controlador
         {
             linea = linea.trim().replaceAll("\\s+", " ");
             String[] split = linea.split(",");
-            ingles = split[0].trim();
-            espaniol = split[1].trim();
-            frances = split[2].trim();
+            ingles = split[0].trim().toLowerCase();
+            espaniol = split[1].trim().toLowerCase();
+            frances = split[2].trim().toLowerCase();
             this.ingles.insertar(ingles, espaniol);
             this.frances.insertar(frances, espaniol);
         }
     }
-
+    
+    /** 
+     * @param n
+     */
     public void recorrer(Nodo<String> n){
         if (n != null) {
             recorrer(n.getIzquierda());
@@ -67,7 +81,12 @@ public class Controlador
             recorrer(n.getDerecha());
         }
     }
-
+    
+    /** 
+     * @param palabra
+     * @param ingles
+     * @return String
+     */
     public String traducir(String palabra, boolean ingles)
     {
         if(ingles)
@@ -79,7 +98,11 @@ public class Controlador
             return this.frances.traduccion(palabra.toLowerCase());
         }
     }
-
+    
+    /** 
+     * @param linea
+     * @return boolean
+     */
     public boolean determinarIdioma(String linea)
     {
         linea = linea.trim().replaceAll("\\s+", " ");
@@ -90,7 +113,11 @@ public class Controlador
         }
         return false;
     }
-
+    
+    /** 
+     * @param ruta
+     * @return String
+     */
     public String traducirTexto(String ruta)
     {
         Archivo archivo = new Archivo();
@@ -109,9 +136,14 @@ public class Controlador
             }
             traduccion += "\n ";
         }
-        return "\nTexto:\n'" + texto.trim() + "'" + "\nTraduccion:\n'" + traduccion.trim() + "'.";
+        return "\nTexto:\n'" + texto.trim() + "'" + "\nTraduccion:\n'" + traduccion.trim() + ".'";
     }
-
+    
+    /** 
+     * @param palabra
+     * @param ingles
+     * @return String
+     */
     public String eliminarPalabra(String palabra, boolean ingles)
     {
         String info = "";
@@ -128,7 +160,13 @@ public class Controlador
 
         return info;
     }
-
+    
+    /** 
+     * @param palabra
+     * @param traduccion
+     * @param ingles
+     * @return String
+     */
     public String editar(String palabra, String traduccion, boolean ingles)
     {
         if(ingles) return this.ingles.editar(palabra, traduccion);
@@ -137,7 +175,6 @@ public class Controlador
 
     
     //Archivo
-
     /** 
      * @param ruta
      * @return String
@@ -165,7 +202,5 @@ public class Controlador
     {
         this.listaCompleta = this.archivo.leerArchivo();
     }
-    
     //Fin archivo
-
 }

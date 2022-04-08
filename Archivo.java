@@ -1,8 +1,8 @@
 /**
  * Clase Archivo. La cual se encagara de manejar el archivo de tipo txt
  * Autor: Elias Alberto Alvarado Raxon - 21808
- * Fecha de creacion: 19/03/2022
- * @version 3
+ * Fecha de creacion: 06/04/2022
+ * @version 1
  */
 
 

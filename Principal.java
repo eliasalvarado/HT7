@@ -61,25 +61,21 @@ public class Principal
             }
         }
 
-        //Pruebas///////////////////////////////////////////////
+        ///////////////////////Lectura del diccionario.txt//////////////////////////
         controlador.archivoArray();
         controlador.insertar();
-        System.out.println("\nIngles:");
-        controlador.recorrer(controlador.getIngles().getRaiz());
-        System.out.println("\nFrances:");
-        controlador.recorrer(controlador.getFrances().getRaiz());
         ////////////////////////////////////////////////////////
         
         while(buclePrincipal)
         {
-            respuesta = pregunta("Menu:\n1. Traducir palabra.\n2. Traducir texto.\n3. Agregar traduccion.\n4. Editar diccionario.\n5. Eliminar traduccion.\n6. Salir.\nRespueta: ", 6);
+            respuesta = pregunta("\nMenu:\n1. Traducir palabra.\n2. Traducir texto.\n3. Agregar traduccion.\n4. Editar diccionario.\n5. Eliminar traduccion.\n6. Salir.\nRespueta: ", 6);
             switch (respuesta) {
                 case 1: //palabra
-                if(pregunta("¿Que desea traducir?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nNOTA: Si la palabra ingresada no existe en el diccionario, esta apararecera con el siguiente formato: *PalabraIngresada*.\nRespuesta: ", 2) == 1) ingles = true;
+                if(pregunta("\n¿Que desea traducir?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nNOTA: Si la palabra ingresada no existe en el diccionario, esta apararecera con el siguiente formato: *PalabraIngresada*.\nRespuesta: ", 2) == 1) ingles = true;
                 else ingles = false;
                 System.out.println("\nIngrese la palabra que desee traducir: ");
                 palabra = scanner.nextLine().toLowerCase();
-                System.out.println("La traduccion de: '" + palabra + "' es: " + controlador.traducir(palabra, ingles));
+                System.out.println("\nLa traduccion de: '" + palabra + "' es: " + controlador.traducir(palabra, ingles));
                     break;
                 
                 case 2: //texto
@@ -90,7 +86,7 @@ public class Principal
                     break;
 
                 case 3: //agregar traduccion
-                if(pregunta("¿A que diccionario lo desea agregar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
+                if(pregunta("\n¿A que diccionario lo desea agregar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
                 else ingles = false;
                 if(ingles) System.out.println("\nIngrese la palabra en Ingles que desee agregar: ");
                 else System.out.println("\nIngrese la palabra en Frances que desee agregar: ");
@@ -101,7 +97,7 @@ public class Principal
                     break;
                 
                 case 4: //Editar diccionario
-                if(pregunta("¿A que diccionario desea editar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
+                if(pregunta("\n¿A que diccionario desea editar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
                 else ingles = false;
                 if(ingles) System.out.println("\nIngrese la palabra en Ingles que desee editar: ");
                 else System.out.println("\nIngrese la palabra en Frances que desee editar: ");
@@ -112,7 +108,7 @@ public class Principal
                     break;
 
                 case 5: //Eliminar palabra de un diccionario
-                if(pregunta("¿A que diccionario lo desea agregar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
+                if(pregunta("\n¿A que diccionario lo desea agregar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
                 else ingles = false;
                 if(ingles) System.out.println("\nIngrese la palabra en Ingles que desee eliminar: ");
                 else System.out.println("\nIngrese la palabra en Frances que desee eliminar: ");
