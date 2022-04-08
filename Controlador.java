@@ -72,11 +72,11 @@ public class Controlador
     {
         if(ingles)
         {
-            return this.ingles.traduccion(palabra);
+            return this.ingles.traduccion(palabra.toLowerCase());
         }
         else
         {
-            return this.frances.traduccion(palabra);
+            return this.frances.traduccion(palabra.toLowerCase());
         }
     }
 
@@ -105,7 +105,7 @@ public class Controlador
             String[] split = linea.split(" ");
             for(String palabra: split)
             {
-                traduccion += this.traducir(palabra, this.determinarIdioma(palabra)) + " ";
+                traduccion += this.traducir(palabra.toLowerCase(), this.determinarIdioma(palabra.toLowerCase())) + " ";
             }
             traduccion += "\n ";
         }

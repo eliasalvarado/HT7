@@ -78,7 +78,7 @@ public class Principal
                 if(pregunta("¿Que desea traducir?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nNOTA: Si la palabra ingresada no existe en el diccionario, esta apararecera con el siguiente formato: *PalabraIngresada*.\nRespuesta: ", 2) == 1) ingles = true;
                 else ingles = false;
                 System.out.println("\nIngrese la palabra que desee traducir: ");
-                palabra = scanner.nextLine();
+                palabra = scanner.nextLine().toLowerCase();
                 System.out.println("La traduccion de: '" + palabra + "' es: " + controlador.traducir(palabra, ingles));
                     break;
                 
@@ -94,9 +94,9 @@ public class Principal
                 else ingles = false;
                 if(ingles) System.out.println("\nIngrese la palabra en Ingles que desee agregar: ");
                 else System.out.println("\nIngrese la palabra en Frances que desee agregar: ");
-                palabra = scanner.nextLine();
+                palabra = scanner.nextLine().toLowerCase();
                 System.out.println("\nIngrese su traduccion al Espaniol: ");
-                traduccion = scanner.nextLine();
+                traduccion = scanner.nextLine().toLowerCase();
                 System.out.println(controlador.insertar(palabra, traduccion, ingles));
                     break;
                 
@@ -109,7 +109,7 @@ public class Principal
                 else ingles = false;
                 if(ingles) System.out.println("\nIngrese la palabra en Ingles que desee eliminar: ");
                 else System.out.println("\nIngrese la palabra en Frances que desee eliminar: ");
-                palabra = scanner.nextLine();
+                palabra = scanner.nextLine().toLowerCase();
                 System.out.println(controlador.eliminarPalabra(palabra, ingles));
                     break;
 
