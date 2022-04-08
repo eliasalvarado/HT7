@@ -101,7 +101,14 @@ public class Principal
                     break;
                 
                 case 4: //Editar diccionario
-                    
+                if(pregunta("¿A que diccionario desea editar?\n1. Ingles-Espaniol.\n2. Frances-Espaniol.\nRespuesta: ", 2) == 1) ingles = true;
+                else ingles = false;
+                if(ingles) System.out.println("\nIngrese la palabra en Ingles que desee editar: ");
+                else System.out.println("\nIngrese la palabra en Frances que desee editar: ");
+                palabra = scanner.nextLine().toLowerCase();
+                System.out.println("\nIngrese la nueva traduccion al Espaniol: ");
+                traduccion = scanner.nextLine().toLowerCase();
+                System.out.println(controlador.editar(palabra, traduccion, ingles));
                     break;
 
                 case 5: //Eliminar palabra de un diccionario

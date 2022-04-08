@@ -129,6 +129,12 @@ public class Controlador
         return info;
     }
 
+    public String editar(String palabra, String traduccion, boolean ingles)
+    {
+        if(ingles) return this.ingles.editar(palabra, traduccion);
+        else return this.frances.editar(palabra, traduccion);
+    }
+
     
     //Archivo
 
