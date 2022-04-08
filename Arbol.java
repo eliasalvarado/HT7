@@ -1,3 +1,9 @@
+/**
+ * Clase Arbol. Implementara la logica de un BST utilizando nodos de tipo String
+ * Autor: Elias Alberto Alvarado Raxon - 21808
+ * Fecha de creacion: 06/04/2022
+ * @version 1
+ */
 
 public class Arbol
 {
@@ -14,6 +20,19 @@ public class Arbol
         if (nodo.getPalabra().equals(busqueda)) return true;
         else if (busqueda.compareTo(nodo.getPalabra()) < 0) return existe(nodo.getIzquierda(), busqueda);
         else return existe(nodo.getDerecha(), busqueda);
+    }
+
+    public String traduccion(String palabra)
+    {
+        return traduccion(this.raiz, palabra);
+    }
+
+    public String traduccion(Nodo<String> nodo, String palabra)
+    {
+        if (nodo == null) return "*"  + palabra + "*";
+        if (nodo.getPalabra().equals(palabra)) return nodo.getTraduccion();
+        else if (palabra.compareTo(nodo.getPalabra()) < 0) return traduccion(nodo.getIzquierda(), palabra);
+        else return traduccion(nodo.getDerecha(), palabra);
     }
 
     public void insertar(String palabra, String traduccion)

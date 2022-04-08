@@ -2,7 +2,7 @@ public class Nodo<E>
 {
     private E palabra; //Llave
     private E traduccion; //Contenido
-    private Nodo<E> padre,izquierda, derecha;
+    private Nodo<E> padre,izquierda, derecha; //nodos
 
     public Nodo(E palabra, E traduccion)
     {
@@ -59,5 +59,57 @@ public class Nodo<E>
     public void setIzquierda(Nodo<E> izquierda)
     {
         this.izquierda = izquierda;
+    }
+
+
+    public Nodo<E> findPredecessor() {
+        if (this.getDerecha() == null) {
+            return this;
+        } else {
+            return this.getDerecha().findPredecessor();
+        }
+    }
+ 
+    public Nodo<E> findSuccessor() {
+        if (this.getIzquierda() == null) {
+            return this;
+        } else {
+            return this.getIzquierda().findSuccessor();
+        }
+    }
+ 
+    public Nodo<E> delete(E palabra) {
+        Nodo<E> response = this;
+        if(palabra.toString().compareTo(this.palabra.toString()) < 0)
+        {
+            this.izquierda = this.izquierda.delete(palabra);
+        }
+        else if(palabra.toString().compareTo(this.palabra.toString()) > 0)
+        {
+            this.derecha = this.derecha.delete(palabra);
+        } 
+        else 
+        {
+            if (this.izquierda != null && this.derecha != null) 
+            {
+                Nodo<E> temp = this;
+                Nodo<E> maxOfTheLeft = this.izquierda.findPredecessor();
+                this.palabra = maxOfTheLeft.getPalabra();
+                temp.izquierda = temp.izquierda.delete(maxOfTheLeft.getPalabra());
+            } 
+            else if (this.izquierda != null)
+            {
+                response = this.izquierda;
+            }
+            else if (this.derecha != null) 
+            {
+                response = this.derecha;
+            }
+            else 
+            {
+                response = null;
+            }
+        }
+        return response;
     }
 }

@@ -1,0 +1,13 @@
+house,casa,loger
+dog,perro,chien
+homework,tarea,devoirs
+woman,mujer,femme
+town,pueblo,ville
+yes,si,Oui
+the,la,la
+asked,pregunto,demandee
+me,me,moi
+to,a,pour
+do,hacer,fais
+my,mi,ma
+about,sobre,sur

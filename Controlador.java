@@ -1,3 +1,10 @@
+/**
+ * Clase Controldaor. Sera la encargada de ejecutar las acciones requeridas por el usuario
+ * Autor: Elias Alberto Alvarado Raxon - 21808
+ * Fecha de creacion: 06/04/2022
+ * @version 1
+ */
+
 
 import java.util.ArrayList;
 
@@ -17,6 +24,22 @@ public class Controlador
     public Arbol getFrances()
     {
         return this.frances;
+    }
+
+    public String insertar(String palabra, String traduccion, boolean ingles)
+    {
+        String info = "";
+        if(ingles)
+        {
+            this.ingles.insertar(palabra, traduccion);
+            info += "\nSe ha agregado la palabra '" + palabra + "' con traduccion: " + traduccion + " al diccionario de Ingles-Espaniol";
+        }
+        else
+        {
+            this.frances.insertar(palabra, traduccion); 
+            info += "\nSe ha agregado la palabra '" + palabra + "' con traduccion: " + traduccion + " al diccionario de Frances-Espaniol";
+        }
+        return info;
     }
 
     public void insertar()
@@ -43,6 +66,67 @@ public class Controlador
             System.out.println("Palabra: " + n.getPalabra() + ". Traduccion: " + n.getTraduccion());
             recorrer(n.getDerecha());
         }
+    }
+
+    public String traducir(String palabra, boolean ingles)
+    {
+        if(ingles)
+        {
+            return this.ingles.traduccion(palabra);
+        }
+        else
+        {
+            return this.frances.traduccion(palabra);
+        }
+    }
+
+    public boolean determinarIdioma(String linea)
+    {
+        linea = linea.trim().replaceAll("\\s+", " ");
+        String[] split = linea.split(" ");
+        for(String palabra: split)
+        {
+            if(this.ingles.existe(palabra)) return true;
+        }
+        return false;
+    }
+
+    public String traducirTexto(String ruta)
+    {
+        Archivo archivo = new Archivo();
+        archivo.crearArchivo(ruta);
+        ArrayList<String> palabras = archivo.leerArchivo();
+        String traduccion = "\n";
+        String texto = "";
+        for(String linea: palabras)
+        {
+            texto += linea + ".\n ";
+            linea = linea.trim().replaceAll("\\s+", " ");
+            String[] split = linea.split(" ");
+            for(String palabra: split)
+            {
+                traduccion += this.traducir(palabra, this.determinarIdioma(palabra)) + " ";
+            }
+            traduccion += "\n ";
+        }
+        return "\nTexto:\n'" + texto.trim() + "'" + "\nTraduccion:\n'" + traduccion.trim() + "'.";
+    }
+
+    public String eliminarPalabra(String palabra, boolean ingles)
+    {
+        String info = "";
+        if(ingles)
+        {
+            this.ingles.getRaiz().delete(palabra);
+            info += "\nSe ha eliminado la palabra '" + palabra + "' del diccionario de Ingles-Espaniol.";
+        }
+        else
+        {
+            this.frances.getRaiz().delete(palabra);
+            info += "\nSe ha eliminado la palabra '" + palabra + "' del diccionario de Frances-Espaniol.";
+        }
+
+        return info;
     }
 
     
